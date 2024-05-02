@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="navbar.css">
-    <link rel="stylesheet" href="dispstyle.css">
+    <link rel="stylesheet" href="order.css">
     <title>Flower Final Project</title>
 </head>
 <body>
@@ -15,5 +15,71 @@
         <li class = "right"><a href="track.html">Track Order</a></li>
         <li class="right"><a  href="login.html">Login</a></li>
     </ul>
+    <div class = "container">
+        <div class="image-container" id = "imagecontainer">
+        </div>
+        <div class="form-container">
+            <div id = "recipient-container">
+                <h1>RECIPIENT</h1>
+                <label for="firstname">First Name *</label><br />
+                <input type="text" id="firstname" placeholder="First Name">
+                <label for="lastname">Last Name *</label><br />
+                <input type="text" id="lastname" placeholder="Last Name">
+                <label for="relationship">Relationship</label><br />
+                <select name="relationship" id="relationship">
+        >           <option value = "mixed">Significant Other</option>
+                    <option value = "roses">Friend</option>
+                    <option value = "lilies">Mother</option>
+                </select>
+                <h1>DELIVER TO</h1>
+                <label for="address">Address *</label><br />
+                <input type="text" id="address" placeholder="Address">
+                <label for="aptsuite">Apt/Suite</label><br />
+                <input type="text" id="aptsuite" placeholder="Apt/Suite">
+                <label for="city">City *</label><br />
+                <input type="text" id="city" placeholder="City">
+                <label for="state">State </label>
+                <select name = "state" id = "state">
+                    <option value = "Indiana">Indiana</option>
+                </select> <br />
+                <label for="zipcode">Zip Code *</label><br />
+                <input type="text" id="zipcode" placeholder="Zip Code">
+                <button onclick = "continueToOrder()">Continue</button>
+                
+            </div>
+        </div>
+    </div>
+
+
 </body>
+<script src = "configuration.js"></script>
+<script>
+    let host = getHost();
+    
+    let id = localStorage.getItem("flowerId");
+    let container = document.getElementById("imagecontainer");
+    console.log(id);
+    container.innerHTML = `<img src="${host}/flowers/${id}/image" alt="${id}.jpg" style="width:75%; margin-left:50px">`;
+    async function continueToOrder(){
+        let firstname = document.getElementById("firstname");
+        let lastname = document.getElementById("lastname");
+        let relationship = document.getElementById("relationship");
+        let address = document.getElementById("address");
+        if(document.getElementById("aptsuite") != null){
+            let aptsuite = document.getElementById("aptsuite");
+            localStorage.setItem('aptsuite', aptsuite);
+        }
+        let city = document.getElementById("city");
+        let state = document.getElementById("state");
+        let zipcode = document.getElementById("zipcode");
+        localStorage.setItem('firstname', firstname.value);
+        localStorage.setItem('lastname', lastname.value);
+        localStorage.setItem('relationship', relationship.value);
+        localStorage.setItem('address', address.value);
+        localStorage.setItem('city', city.value);
+        localStorage.setItem('state', state.value);
+        localStorage.setItem('zipcode', zipcode.value);
+        window.location.href = "confirm.html";    
+    }
+</script>
 </html>

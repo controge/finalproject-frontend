@@ -1,7 +1,8 @@
 function gotoBasket(event){
     event.preventDefault();
-    let form = document.forms[0];
-    let formData = new FormData(form);
-    let data = Object.fromEntries(formData);
+    let dateInput = document.getElementById("deliveryDate");
+    let date = dateInput.value;
+    localStorage.setItem('deliveryDate', date);
+    
     window.location.href = "basket.html";
 }

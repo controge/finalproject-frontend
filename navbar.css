@@ -1,3 +1,7 @@
+body{
+  font: 600 16px/18px "Open Sans", sans-serif;
+}
+
 ul.topnav {
     list-style-type: none;
     margin-top: 1%;

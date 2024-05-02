@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="confirm.css">
+    <title>Flower Final Project</title>
+</head>
+<body>
+    <ul class="topnav">
+        <li><a class="active" href="index.html">Final Project</a></li>
+        <li class = "right"><a href="cart.html">Cart (1)</a></li>
+        <li class = "right"><a href="help.html">Help</a></li>
+        <li class = "right"><a href="track.html">Track Order</a></li>
+        <li class="right"><a  href="login.html">Login</a></li>
+    </ul>
+    <div class = "container">
+        <div class="image-container" id = "imagecontainer">
+        </div>
+        <div>
+            <h2 id = "flowername"></h2>
+            <label for = "deliverydate">Delivery Date</label>
+            <div id = "deliverydate"></div><br />
+            <label for = "itemprice">Item Pricing</label><br />
+            <div id = "itemprice"></div>
+            <label for = "deliveryaddress">Delivery Address</label><br />
+            <div id = "deliveryaddress">
+                <div id = "recipientname"></div>
+                <div id = "recipientaddr"></div>
+                <div id = "recipientcity"></div>
+
+            </div>
+            
+            <div id = "price" class = "pricecontainer"></div>
+        </div>
+    </div>
+</body>
+
+<script src = "configuration.js"></script>
+
+<script>
+    let host = getHost();
+    
+    let id = localStorage.getItem("flowerId");
+    let container = document.getElementById("imagecontainer");
+    console.log(id);
+    container.innerHTML = `<img src="${host}/flowers/${id}/image" alt="${id}.jpg" style="width:50%; margin-left:50px">`;
+    
+    async function populateData(){
+        let deliveryDate = localStorage.getItem('deliveryDate');
+        let flowerPrice = localStorage.getItem('flowerCost');
+        let flowerName = localStorage.getItem('flowerName');
+        let recName = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname');
+        let recAddr = localStorage.getItem('address');
+        let recCity = localStorage.getItem('city') + " " + localStorage.getItem('state') + " " + localStorage.getItem("zipcode");
+        
+        let dateElement = document.getElementById("deliverydate");
+        dateElement.innerHTML = deliveryDate;
+        let priceElement = document.getElementById("itemprice");
+        priceElement.innerHTML = "$" + flowerPrice;
+        let flowerNameElement = document.getElementById("flowername");
+        flowerNameElement.innerHTML = flowerName;
+        let recNameElement = document.getElementById("recipientname");
+        recNameElement.innerHTML = recName;
+        let recAddrElement = document.getElementById("recipientaddr");
+        recAddrElement.innerHTML = recAddr;
+        let recCityElement = document.getElementById("recipientcity");
+        recCityElement.innerHTML = recCity;
+
+        let priceBlock = document.getElementById("price");
+        if(isLoggedIn()){
+            priceBlock.innerHTML = `<div class = "discountBlock"> You saved $10.00 on this order!</div>
+                                    <div>SUBTOTAL: $${flowerPrice}.00
+                                    <div>Delivery: $25.00
+                                    <div>Delivery Discount: -$10.00
+                                    <div>Tax: $0.00
+                                    <h2>ORDER TOTAL: ${parseInt(flowerPrice) + 15}`;
+        }else{
+            priceBlock.innerHTML = `<div class = "discountBlock"> You saved $10.00 on this order!</div>
+                                    <div>SUBTOTAL: $${flowerPrice}.00
+                                    <div>Delivery: $25.00
+                                    <div>Tax: $0.00
+                                    <h2 style = "margin-bottom: 20px;">ORDER TOTAL: ${parseInt(flowerPrice) + 25}`;
+        }
+    }
+</script>
+
+
+<script>window.onload = populateData</script>
+</html>
