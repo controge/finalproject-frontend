@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="dispstyle.css">
+    <title>Flower Final Project</title>
+</head>
+<body>
+    <ul class="topnav">
+        <li><a class="active" href="index.html">Final Project</a></li>
+        <li class = "right"><a href="cart.html">Cart (0)</a></li>
+        <li class = "right"><a href="help.html">Help</a></li>
+        <li class = "right"><a href="track.html">Track Order</a></li>
+        <li class="right"><a  href="login.html">Login</a></li>
+    </ul>
+    <div class = "container">
+        <div class = "rectheader">
+            <h2>Send her blooms</h2>
+            <p>-------</p>
+            <div>She will love all of our mothers day flowers and gifts</div>
+        </div>
+        <div class = "image-container">
+            <img src="headerFlowers.jpg">
+        </div>
+    </div>
+
+    <div class = "filterbar" id="filters">
+        <label for="flowerlabel">FILTER BY      :</label>
+        <select name="flowertype" id="flowertype">
+            <option value = "default" selected>Flower Type</option>
+>           <option value = "mixed">Mixed</option>
+            <option value = "roses">Roses</option>
+            <option value = "lilies">Lilies</option>
+            <option value = "tulips">Tulips</option>
+            <option value = "dasies">Dasies</option>
+        </select>
+
+        <select name="occasion" id="occasion">
+            <option value = "default" selected>Occasion</option>
+>           <option value = "mothersday">Mother's Day</option>
+            <option value = "birthday">Birthday</option>
+            <option value = "thankyou">Thank you</option>
+        </select>
+
+        <select name="color" id="color">
+            <option value = "default" selected>Color</option>
+>           <option value = "mixed">Mixed</option>
+            <option value = "red">Red</option>
+            <option value = "yellow">Yellow</option>
+            <option value = "green">Green</option>
+            <option value = "orange">Orange</option>
+        </select>
+
+        <label for="sort">Sort:</label>
+        <select name="sort" id="sort">
+>           <option value = "low-high">Low to High</option>
+            <option value = "high-low">High to Low</option>
+        </select>
+        <button onclick="listFlowers()">Refresh</button>
+    </div>
+
+    <div class = "flowercontainer" id = "flowers"></div>
+    
+</body>
+    <script src="configuration.js"></script>
+    <script src="flowers.js"></script>
+    <script>window.onload = listFlowers</script>
+</html>

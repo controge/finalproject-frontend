@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="order.css">
+    <title>Flower Final Project</title>
+</head>
+<body>
+    <ul class="topnav">
+        <li><a class="active" href="index.html">Final Project</a></li>
+        <li class = "right"><a >Cart (0)</a></li>
+        <li class = "right"><a >Help</a></li>
+        <li class = "right"><a href="track.html">Track Order</a></li>
+        <li class="right"><a  href="login.html">Login</a></li>
+    </ul>
+    <div class="container">
+        <div class="image-container" id = "imagecontainer">
+        </div>
+        <div class="form-container">
+            <form>
+                <label for = "deliveryDate">Delivery Date</label>
+                <input type="date" id="deliveryDate" name="deliveryDate">
+                <div class="order-type-selection">
+                    <label>Purchasing Options:</label> <br />
+                    <input type="radio" id = "subscription" name = "answer" value = "subscription">Start a Subscription<br />
+                    <input type="radio" id = "single" name = "answer" value = "single">One Time Purchase<br />
+                    
+                </div>
+                
+                <button onclick = "gotoBasket(event)">Add to Basket</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script src = "order.js"></script>
+<script src = "configuration.js"></script>
+<script>
+    let host = getHost();
+    
+    let id = localStorage.getItem("flowerId");
+    let container = document.getElementById("imagecontainer");
+    console.log(id);
+    container.innerHTML = `<img src="${host}/flowers/${id}/image" alt="${id}.jpg" style="width:75%; margin-left:50px">`;
+
+</script>
+</html>
